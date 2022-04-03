@@ -1,0 +1,42 @@
+C51 COMPILER V9.54   MAIN                                                                  04/02/2022 14:56:23 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\KEIL5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\HARDWARE\wheel;.\HARDWARE\Delay;.
+                    -\HARDWARE\run;.\HARDWARE\sonar;.\HARDWARE\fan;.\HARDWARE\fire;.\HARDWARE\fire) DEBUG OBJECTEXTEND PRINT(.\Listings\main.
+                    -lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "run.h"
+   2          //#include "Delay.h"
+   3          #include "sonar.h"
+   4          #include "fire.h"
+   5          #include "fan.h"
+   6          
+   7          void main()
+   8          {
+   9   1        fan_off();
+  10   1        Timer_Init();
+  11   1        car_go();
+  12   1        while(1)
+  13   1        {
+  14   2        sonar();
+  15   2        fire();
+  16   2        }
+  17   1      } 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     17    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

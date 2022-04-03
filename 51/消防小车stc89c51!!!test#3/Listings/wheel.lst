@@ -1,0 +1,70 @@
+C51 COMPILER V9.54   WHEEL                                                                 03/27/2022 11:06:07 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE WHEEL
+OBJECT MODULE PLACED IN .\Objects\wheel.obj
+COMPILER INVOKED BY: E:\KEIL5\C51\BIN\C51.EXE HARDWARE\wheel\wheel.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\HARDWARE\wheel;.\
+                    -HARDWARE\Delay;.\HARDWARE\run;.\HARDWARE\sonar) DEBUG OBJECTEXTEND PRINT(.\Listings\wheel.lst) TABS(2) OBJECT(.\Objects\
+                    -wheel.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          ////////////////////////////////////////////////////////////////
+   4          
+   5          sbit IN11 = P0^5; //left front wheel
+   6          sbit IN12 = P0^6;
+   7          
+   8          sbit IN13 = P0^3; //right front wheel
+   9          sbit IN14 = P0^4;
+  10          
+  11          sbit IN21 = P3^5; //left rear wheel
+  12          sbit IN22 = P3^6;
+  13          
+  14          sbit IN23 = P3^3; //right rear wheel
+  15          sbit IN24 = P3^4;
+  16          
+  17          ////////////////////////////////////////////////////////////////
+  18          
+  19          void LF_motor_go()
+  20          { IN11 = 0;IN12 = 1; }
+  21          void LF_motor_stop()
+  22          { IN11 = 1;IN12 = 1; }
+  23          void LF_motor_back()
+  24          { IN11 = 1;IN12 = 0; }
+  25          void RF_motor_go()
+  26          { IN13 = 0;IN14 = 1; }
+  27          void RF_motor_stop()
+  28          { IN13 = 1;IN14 = 1; }
+  29          void RF_motor_back()
+  30          { IN13 = 1;IN14 = 0; }
+  31          void LR_motor_go()
+  32          { IN21 = 1;IN22 = 0; }
+  33          void LR_motor_stop()
+  34          { IN21 = 1;IN22 = 1; }
+  35          void LR_motor_back()
+  36          { IN21 = 0;IN22 = 1; }
+  37          void RR_motor_go()
+  38          { IN23 = 1;IN24 = 0; }
+  39          void RR_motor_stop()
+  40          { IN23 = 1;IN24 = 1; }
+  41          void RR_motor_back()
+  42          { IN23 = 0;IN24 = 1; }
+  43          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     60    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.54   WHEEL                                                                 03/27/2022 11:06:07 PAGE 2   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
