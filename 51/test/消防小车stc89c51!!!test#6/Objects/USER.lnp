@@ -1,0 +1,11 @@
+".\Objects\main.obj",
+".\Objects\wheel.obj",
+".\Objects\run.obj",
+".\Objects\Delay.obj",
+".\Objects\sonar.obj",
+".\Objects\fan.obj",
+".\Objects\fire.obj",
+".\Objects\sonar2.obj" 
+TO ".\Objects\USER" 
+PRINT(".\Listings\USER.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

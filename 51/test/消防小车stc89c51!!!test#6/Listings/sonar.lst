@@ -1,0 +1,127 @@
+C51 COMPILER V9.54   SONAR                                                                 04/02/2022 19:12:32 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE SONAR
+OBJECT MODULE PLACED IN .\Objects\sonar.obj
+COMPILER INVOKED BY: E:\KEIL5\C51\BIN\C51.EXE HARDWARE\sonar\sonar.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\HARDWARE\wheel;.\
+                    -HARDWARE\Delay;.\HARDWARE\run;.\HARDWARE\sonar;.\HARDWARE\fan;.\HARDWARE\fire;.\HARDWARE\fire;.\HARDWARE\sonar2) DEBUG O
+                    -BJECTEXTEND PRINT(.\Listings\sonar.lst) TABS(2) OBJECT(.\Objects\sonar.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include <intrins.h>
+   3          #include "run.h"
+   4          #include "Delay.h"
+   5          
+   6          ////////////////////////////////////////////////////////////////
+   7          
+   8          sbit Trig1 = P2^0;   //emitter  front
+   9          sbit Trig2 = P2^2;   //emitter  left
+  10          sbit Trig3 = P2^4;   //emitter  right
+  11          sbit Echo1 = P2^1;   //receiver front
+  12          sbit Echo2 = P2^3;   //receiver left
+  13          sbit Echo3 = P2^5;   //receiver right
+  14          
+  15          unsigned int distance1,distance2,distance3;//distance? due to P2^?
+  16          
+  17          ////////////////////////////////////////////////////////////////
+  18          
+  19          void Delay15us()    //@11.0592MHz
+  20          {
+  21   1        unsigned char i;
+  22   1      
+  23   1        _nop_();
+  24   1        i = 5;
+  25   1        while (--i);
+  26   1      }
+  27          
+  28          ////////////////////////////////////////////////////////////////
+  29          
+  30          void sonar()
+  31          {
+  32   1        TMOD  = 0x11;    //since timer1 has set as mode1 in run.c
+  33   1        TL1   = 0;       //initial set
+  34   1        TH1   = 0;       //initial set
+  35   1        EA    = 1;       //open all timers
+  36   1        
+  37   1      ////////////////////////////
+  38   1        
+  39   1        Trig1 = 1;       //front emiter
+  40   1        Delay15us();
+  41   1        Trig1 = 0;       //emit a TTL in 20us 
+  42   1        while(!Echo1);
+  43   1        TR1   = 1;       //clock start
+  44   1        while(Echo1);    //until received
+  45   1        {
+  46   2          TR1 = 0;       //end clock
+  47   2          distance1 = ((TH1*256+TL1)*0.034)/2;
+  48   2          TL1 = 0;       //initial reset
+  49   2          TH1 = 0;       //initial reset  
+  50   2        }
+  51   1        
+  52   1        
+  53   1        Trig2 = 1;       //left emiter
+C51 COMPILER V9.54   SONAR                                                                 04/02/2022 19:12:32 PAGE 2   
+
+  54   1        Delay15us();
+  55   1        Trig2 = 0;       //emit a TTL in 20us 
+  56   1        while(!Echo2);
+  57   1        TR1   = 1;       //clock start
+  58   1        while(Echo2);    //until received
+  59   1        {
+  60   2          TR1 = 0;       //end clock
+  61   2          distance2 = ((TH1*256+TL1)*0.034)/2;
+  62   2          TL1 = 0;       //initial reset
+  63   2          TH1 = 0;       //initial reset  
+  64   2        }
+  65   1      
+  66   1        
+  67   1        Trig3 = 1;       //right emiter
+  68   1        Delay15us();
+  69   1        Trig3 = 0;       //emit a TTL in 20us 
+  70   1        while(!Echo3);
+  71   1        TR1   = 1;       //clock start
+  72   1        while(Echo3);    //until received
+  73   1        {
+  74   2          TR1 = 0;       //end clock
+  75   2          distance3 = ((TH1*256+TL1)*0.034)/2;
+  76   2          TL1 = 0;       //initial reset
+  77   2          TH1 = 0;       //initial reset  
+  78   2        }
+  79   1      
+  80   1      ///////////////////////////
+  81   1        
+  82   1        if(distance1 < 15)    
+  83   1        {car_stop();Delay(80);car_leftstop();Delay(150);car_stop();Delay(80);}
+  84   1        if(distance2 < 15)    
+  85   1        {car_stop();Delay(80);car_leftstop();Delay(150);car_stop();Delay(80);}
+  86   1        else
+  87   1        {
+  88   2      
+  89   2        if(distance3 < 8.5)
+  90   2        {car_leftgo();Delay(50);car_go();Delay(130);car_stop();Delay(80);}
+  91   2        if(distance3 > 8.5)
+  92   2        {
+  93   3          
+  94   3          if(distance3 > 50 && distance3 < 200)
+  95   3          {car_rightgo();Delay(90);car_go();Delay(50);car_stop();Delay(80);}
+  96   3          else
+  97   3          {car_rightgo();Delay(70);car_go();Delay(130);car_stop();Delay(80);}
+  98   3        }
+  99   2        } 
+ 100   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    426    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
