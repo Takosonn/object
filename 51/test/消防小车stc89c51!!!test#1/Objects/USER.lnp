@@ -1,6 +1,0 @@
-".\Objects\main.obj",
-".\Objects\wheel.obj",
-".\Objects\run.obj",
-".\Objects\Delay.obj" 
-TO ".\Objects\USER" 
-PRINT(".\Listings\USER.m51") RAMSIZE(256) 
