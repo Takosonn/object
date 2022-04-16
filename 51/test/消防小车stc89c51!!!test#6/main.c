@@ -11,17 +11,13 @@ void main()
 	Timer_Init();
 	while(1)
 	{
-//	car_go();
-//		Delay(200);
-//		car_stop();
-//		Delay(80);
-	flag = fire();
-	if(flag <= 1)
+	             flag = fire();
+	             if(flag <= 1)
 		{
 		  sonar();
 		  fire();
 		}
-  if(flag > 1)
+  	              if(flag > 1)
 		{
 			sonar2();
 			fire();
