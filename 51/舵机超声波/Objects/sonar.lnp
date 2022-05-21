@@ -1,0 +1,6 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\sonar.obj",
+".\Objects\control.obj" 
+TO ".\Objects\sonar" 
+PRINT(".\Listings\sonar.m51") RAMSIZE(256) 

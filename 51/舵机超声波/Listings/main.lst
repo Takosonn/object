@@ -1,0 +1,54 @@
+C51 COMPILER V9.54   MAIN                                                                  05/02/2022 19:15:19 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: E:\KEIL5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.l
+                    -st) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "sonar.h"
+   3          #include "control.h"
+   4          
+   5          unsigned int m;
+   6          unsigned int n=0;
+   7          
+   8          void main()
+   9          {
+  10   1        Timer0_Init();  
+  11   1        while(1)
+  12   1          {
+  13   2            n = n+1;
+  14   2            sonar();  
+  15   2            m = sonar();
+  16   2            if(m >= 33)
+  17   2            {
+  18   3             if(n <= 300)
+  19   3             control1();
+  20   3             else
+  21   3             control3();
+  22   3            }
+  23   2            else
+  24   2            {
+  25   3              control2();
+  26   3            if(n >= 100)
+  27   3            n = 0;
+  28   3            
+  29   3      } }
+  30   1          }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     74    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
